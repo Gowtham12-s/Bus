@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('img/background-image.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+}
+.contact-section {
+    text-align: center;
+    margin: 20px 0;
+}
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    /* Use the background image of the body */
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    /* Apply the blur effect */
+    z-index: -1;
+    /* Ensure the blurred background stays behind the content */
+}
+
+
+/* Facebook Button Styling */
+.facebook-button {
+    display: flex;
+    margin-top: 250px;
+    justify-content: center;
+    align-items: center;
+    /* For vertical centering */
+
+    /* Optional, for full-page centering */
+}
+
+.facebook-logo {
+    width: 200px;
+    height: 35px;
+    transition: transform 0.2s;
+}
+
+.facebook-logo:hover {
+    transform: scale(1.1);
+    /* Slight zoom effect on hover */
+}
+
+/* whatsapp Button Styling */
+.whatsapp-button {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    /* For vertical centering */
+
+    /* Optional, for full-page centering */
+}
+
+.whatsapp-logo {
+    width: 200px;
+    height: 35px;
+    transition: transform 0.2s;
+}
+
+.whatsapp-logo:hover {
+    transform: scale(1.1);
+    /* Slight zoom effect on hover */
+}

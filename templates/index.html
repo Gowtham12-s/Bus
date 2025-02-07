@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TRANSPORT</title>
+        <link rel="stylesheet" href="static/styles.css">
+    </head>
+    <body>
+        <header>
+            <!-- Hamburger Menu Icon -->
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+            <img href="static/img/profile.png">
+            <nav>
+                <div class="nav-container">
+                    <div class="nav-links">
+                        <a href="#">Home</a>
+                        <a href="/contact">Contact</a>
+                    </div>
+                    <div class="nav-profile">
+                        {% if session.get('user_id') %}
+                        <a href="/profile" class="profile-btn">
+                            <span class="profile">
+                                <img src="static/img/profile.png" alt="Profile"
+                                    class="profile-icon">
+                            </span>
+                        </a>
+                        {% else %}
+                        <a href="/login" class="log-button">Login</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Side Navigation Slider -->
+        <div id="sideMenu" class="side-menu">
+            <div class="menu-content">
+                <!-- Logo at the top -->
+                <img src="static/img/ifet.png" alt="Logo" class="menu-logo">
+                <hr> <!-- Line Separator -->
+
+                <!-- Navigation Links -->
+                <a href="/">Home</a>
+                <a href="/profile">Profile</a>
+                <a href="#">All Buses</a>
+                <a href="/emp">Attendance</a>
+                <a href="/contact">Contact</a>
+                <a href="/about">about</a>
+            </div>
+        </div>
+
+        <div class="road">
+            <h1>WELCOME</h1>
+            <div class="road">
+                <img src="static/img/bus1.png" alt="Bus" class="bus">
+            </div>
+        </div>
+
+        <div class="text-container" id="animated-text"></div>
+
+        <script>
+        function toggleMenu() {
+            let menu = document.getElementById("sideMenu");
+            if (menu.style.width === "250px") {
+                menu.style.width = "0";  // Close Menu
+            } else {
+                menu.style.width = "250px";  // Open Menu
+            }
+        }
+
+        const textArray = ["CHIDAMBARAM", "VILLUPURAM", "PONDICHERRY", "SETHIYATHOPE","TINDIVANAM"];
+        let index = 0;
+        let charIndex = 0;
+        const textElement = document.getElementById("animated-text");
+
+        function typeText() {
+            if (charIndex < textArray[index].length) {
+                textElement.textContent += textArray[index].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeText, 100);
+            } else {
+                setTimeout(eraseText, 2000);
+            }
+        }
+
+        function eraseText() {
+            if (charIndex > 0) {
+                textElement.textContent = textArray[index].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(eraseText, 50);
+            } else {
+                index = (index + 1) % textArray.length;
+                setTimeout(typeText, 500);
+            }
+        }
+
+        typeText();
+        </script>
+    </body>
+</html>

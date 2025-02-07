@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="static/stiles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+        <p id="errorMessage" class="error-message"></p>
+    </div>
+
+    <script>
+        // Example of hardcoded credentials
+const users = [
+    { username: "user1", password: "password123" },
+    { username: "user2", password: "password456" },
+];
+
+function validateLogin() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('errorMessage');
+
+    // Check if the entered credentials match the hardcoded ones
+    const user = users.find(user => user.username === username && user.password === password);
+
+    if (user) {
+        // Redirect to another page if login is successful
+        window.location.href = '/start_camera'; // Change this to the page you want to navigate to
+        return false;  // Prevent form submission to avoid page reload
+    } else {
+        errorMessage.textContent = "Invalid username or password";
+        return false;  // Prevent form submission to show error
+    }
+}
+
+    </script>
+    
+</body>
+</html>

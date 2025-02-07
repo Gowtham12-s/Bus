@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Camera</title>
+    </head>
+    <body>
+        <h1>Live Camera Feed</h1>
+        <img id="videoStream" src="{{ url_for('video') }}" width="640" height="480">
+
+        <p>Detecting face... Once recognized, you will be redirected.</p>
+
+        <a href="{{ url_for('emp') }}">
+            <button>Back to Main Page</button>
+        </a>
+
+        <script>
+        function checkRedirect() {
+            fetch("{{ url_for('check_status') }}")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.stop) {
+                        window.location.href = "{{ url_for('hi') }}";  // Redirect when face detected
+                    } else {
+                        setTimeout(checkRedirect, 1000);  // Check again every second
+                    }
+                })
+                .catch(() => setTimeout(checkRedirect, 1000));  // Retry if request fails
+        }
+
+        checkRedirect();  // Start checking
+        </script>
+    </body>
+</html>
