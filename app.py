@@ -168,6 +168,10 @@ def check_status():
 def emp():
     return render_template('emp.html')
 
+@app.route('/emp1')
+def emp1():
+    return render_template('index.html')
+
 
 if __name__ == '__main__':
     with app.app_context():

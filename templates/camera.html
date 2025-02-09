@@ -11,8 +11,8 @@
 
         <p>Detecting face... Once recognized, you will be redirected.</p>
 
-        <a href="{{ url_for('emp') }}">
-            <button>Back to Main Page</button>
+        <a href="{{ url_for('emp1') }}">
+            <button>BACK</button>
         </a>
 
         <script>
@@ -31,14 +31,29 @@
 
         checkRedirect();  // Start checking
         </script>
-        <styles>
-                body {
+        <style>
+            body {
                 font-family: Arial, sans-serif;
                 text-align: center;
-                background-color: #f4f4f4;
+                background-image: url('static/img/background-image.png');
+                background-size: cover;
+                background-position: center;
                 margin: 0;
                 padding: 0;
             }
+            body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: inherit;
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            z-index: -1;
+        }
 
             h1 {
                 color: #333;
@@ -54,8 +69,13 @@
 
             p {
                 font-size: 18px;
-                color: #555;
-                margin-top: 10px;
+                color: #fff;
+                background-color: #6a6a6a; /* Red background */
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+                opacity: 0.7;
             }
 
             a {
@@ -63,21 +83,24 @@
             }
 
             button {
-                margin-top: 20px;
+                display: inline-block;
+                background-color: yellow;
+                color: #000;
+                font-weight: bold;
                 padding: 10px 20px;
-                font-size: 16px;
-                color: white;
-                background-color: #007bff;
-                border: none;
+                border: 2px solid #000;
                 border-radius: 5px;
-                cursor: pointer;
-                transition: background 0.3s ease;
+                text-decoration: none;
+                font-size: 18px;
+                margin: 10px;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
             }
 
             button:hover {
-                background-color: #0056b3;
+                background-color: black;
+                color: #fff701;
             }
 
-        </styles>
+        </style>
     </body>
 </html>
