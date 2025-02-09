@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRANSPORT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .bus-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #fff;
+        }
+        .bus-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .route {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Bus Route Information</h2>
+        <div id="busData"></div>
+    </div>
+    <script>
+        const busData = [
+            {"from": "Chennai", "to": "Coimbatore", "stops": ["Sriperumbudur", "Kanchipuram", "Vellore", "Ambur", "Vaniyambadi", "Tirupattur", "Dharmapuri", "Mettur", "Bhavani"], "bus_name": "Kongu Express"},
+            {"from": "Chennai", "to": "Madurai", "stops": ["Tindivanam", "Villupuram", "Ulundurpet", "Perambalur", "Thuraiyur", "Musiri", "Trichy", "Manapparai", "Dindigul", "Thirumangalam"], "bus_name": "Pandian Deluxe"},
+            {"from": "Chennai", "to": "Tirunelveli", "stops": ["Villupuram", "Tindivanam", "Vriddhachalam", "Ariyalur", "Trichy", "Pudukkottai", "Karaikudi", "Sivaganga", "Madurai", "Sattur", "Kayathar"], "bus_name": "Nellai Express"},
+    {"from": "Coimbatore", "to": "Madurai", "stops": ["Pollachi", "Udumalaipet", "Dharapuram", "Oddanchatram", "Batlagundu", "Usilampatti"], "bus_name": "Western Queen"},
+    {"from": "Coimbatore", "to": "Tirunelveli", "stops": ["Pollachi", "Palani", "Rajapalayam", "Srivilliputhur", "Sankarankovil"], "bus_name": "Tamirabharani"},
+    {"from": "Madurai", "to": "Rameswaram", "stops": ["Thirupuvanam", "Manamadurai", "Paramakudi", "Ramanathapuram", "Mandapam", "Pamban"], "bus_name": "Sethusamudram Express"},
+    {"from": "Madurai", "to": "Thoothukudi", "stops": ["Tirumangalam", "Virudhunagar", "Aruppukottai", "Ettayapuram", "Kayalpattinam"], "bus_name": "Pearl City"},
+    {"from": "Trichy", "to": "Chennai", "stops": ["Thuvakudi", "Lalgudi", "Perambalur", "Ayyalur", "Tindivanam", "Kanchipuram"], "bus_name": "Cauvery Express"},
+    {"from": "Trichy", "to": "Pudukkottai", "stops": ["Keeranur", "Gandarvakkottai", "Aranthangi", "Devakottai", "Karaikudi"], "bus_name": "Chola King"},
+    {"from": "Coimbatore", "to": "Ooty", "stops": ["Mettupalayam", "Coonoor", "Aravankadu", "Wellington", "Ketti"], "bus_name": "Nilgiri Mountain"},
+    {"from": "Salem", "to": "Erode", "stops": ["Omalur", "Sankagiri", "Bhavani"], "bus_name": "Textile Express"},
+    {"from": "Erode", "to": "Karur", "stops": ["Modakurichi", "Kodumudi"], "bus_name": "Cauvery Rider"},
+    {"from": "Dindigul", "to": "Kodaikanal", "stops": ["Batlagundu", "Perumalmalai"], "bus_name": "Hilltop Explorer"},
+    {"from": "Tirunelveli", "to": "Kanyakumari", "stops": ["Nagercoil", "Suchindram", "Kulasekaram"], "bus_name": "Cape Commuter"},
+    {"from": "Nagapattinam", "to": "Rameswaram", "stops": ["Thiruvarur", "Mannargudi", "Pattukkottai", "Ramanathapuram"], "bus_name": "Coastal Rider"},
+    {"from": "Villupuram", "to": "Kallakurichi", "stops": ["Ulundurpet", "Sankarapuram"], "bus_name": "Heritage Express"},
+    {"from": "Thoothukudi", "to": "Kanyakumari", "stops": ["Tiruchendur", "Eral", "Sattankulam", "Nagercoil"], "bus_name": "Pearl Coastal"},
+    {"from": "Tiruppur", "to": "Madurai", "stops": ["Palladam", "Dharapuram", "Oddanchatram", "Dindigul"], "bus_name": "Cotton City Deluxe"},
+    {"from": "Chennai", "to": "Pondicherry", "stops": ["Tambaram", "Chengalpattu", "Tindivanam", "Villupuram", "Cuddalore"], "bus_name": "East Coast Express"},
+    {"from": "Trichy", "to": "Thanjavur", "stops": ["Srirangam", "Kumbakonam", "Swamimalai", "Papanasam"], "bus_name": "Chola Heritage"},
+    {"from": "Madurai", "to": "Kodaikanal", "stops": ["Sholavandan", "Batlagundu", "Perumalmalai"], "bus_name": "Hill Queen"},
+    {"from": "Coimbatore", "to": "Salem", "stops": ["Tiruppur", "Erode", "Bhavani", "Attur"], "bus_name": "Kurinji Express"},
+    {"from": "Tirunelveli", "to": "Trichy", "stops": ["Kovilpatti", "Madurai", "Dindigul", "Karur"], "bus_name": "Southern Star"},
+    {"from": "Chennai", "to": "Vellore", "stops": ["Sriperumbudur", "Kanchipuram", "Walajapet"], "bus_name": "Fort City Express"},
+    {"from": "Vellore", "to": "Salem", "stops": ["Ambur", "Tirupattur", "Dharmapuri", "Harur"], "bus_name": "Fort Hills Express"},
+    {"from": "Salem", "to": "Kodaikanal", "stops": ["Attur", "Dharmapuri", "Palani", "Batlagundu"], "bus_name": "Hill Cruiser"},
+    {"from": "Kanyakumari", "to": "Trivandrum", "stops": ["Nagercoil", "Kuzhithurai", "Parassala"], "bus_name": "Kerala Express"},
+    {"from": "Madurai", "to": "Trichy", "stops": ["Manapparai", "Dindigul", "Karur"], "bus_name": "Vaigai Express"},
+    {"from": "Coimbatore", "to": "Tiruppur", "stops": ["Palladam", "Avinashipalayam"], "bus_name": "Textile City Express"},
+    {"from": "Erode", "to": "Salem", "stops": ["Sankagiri", "Omalur"], "bus_name": "Bhavani Express"},
+    {"from": "Thanjavur", "to": "Nagapattinam", "stops": ["Kumbakonam", "Thiruvarur"], "bus_name": "Delta Express"},
+    {"from": "Pudukkottai", "to": "Rameswaram", "stops": ["Karaikudi", "Devakottai", "Ramanathapuram"], "bus_name": "Chola Coastal"},
+    {"from": "Tirunelveli", "to": "Thoothukudi", "stops": ["Kayathar", "Ettayapuram"], "bus_name": "Pearl Express"},
+    {"from": "Kodaikanal", "to": "Palani", "stops": ["Batlagundu", "Oddanchatram"], "bus_name": "Hill Shuttle"},
+    {"from": "Chennai", "to": "Kanyakumari", "stops": ["Tindivanam", "Villupuram", "Trichy", "Madurai", "Tirunelveli"], "bus_name": "Cape Express"},
+    {"from": "Coimbatore", "to": "Kanyakumari", "stops": ["Palani", "Madurai", "Tirunelveli", "Nagercoil"], "bus_name": "Southern Cape Express"},
+    {"from": "Salem", "to": "Trichy", "stops": ["Attur", "Namakkal", "Karur"], "bus_name": "Cauvery Delta Express"},
+    {"from": "Thanjavur", "to": "Rameswaram", "stops": ["Pattukkottai", "Ramanathapuram"], "bus_name": "Temple Coastal"},
+    {"from": "Vellore", "to": "Trichy", "stops": ["Krishnagiri", "Dharmapuri", "Karur"], "bus_name": "Fort Delta Express"},
+    {"from": "Madurai", "to": "Palani", "stops": ["Dindigul", "Oddanchatram"], "bus_name": "Temple Hills Express"},
+    {"from": "Trichy", "to": "Kanyakumari", "stops": ["Madurai", "Tirunelveli", "Nagercoil"], "bus_name": "Southern Star Deluxe"},
+    {"from": "Chennai", "to": "Salem", "stops": ["Kanchipuram", "Vellore", "Dharmapuri"], "bus_name": "Fort Hills Deluxe"},
+    {"from": "Coimbatore", "to": "Thanjavur", "stops": ["Tiruppur", "Karur", "Kumbakonam"], "bus_name": "Chola Delta Express"},
+    {"from": "Erode", "to": "Kodaikanal", "stops": ["Dharapuram", "Palani", "Batlagundu"], "bus_name": "Hill Rider"},
+    {"from": "Thoothukudi", "to": "Rameswaram", "stops": ["Tiruchendur", "Ramanathapuram"], "bus_name": "Pearl Coastal Deluxe"},
+    {"from": "Tirunelveli", "to": "Palani", "stops": ["Madurai", "Dindigul", "Oddanchatram"], "bus_name": "Southern Hills Express"},
+    {"from": "Chennai", "to": "Kodaikanal", "stops": ["Vellore", "Salem", "Dindigul"], "bus_name": "Hill Explorer"},
+    {"from": "Coimbatore", "to": "Rameswaram", "stops": ["Madurai", "Ramanathapuram"], "bus_name": "Coastal Queen"},
+    {"from": "Salem", "to": "Kanyakumari", "stops": ["Dharmapuri", "Tirunelveli", "Nagercoil"], "bus_name": "Cape Hills Express"},
+    {"from": "Thanjavur", "to": "Kanyakumari", "stops": ["Trichy", "Madurai", "Tirunelveli"], "bus_name": "Southern Temple Express"},
+    {"from": "Vellore", "to": "Kanyakumari", "stops": ["Krishnagiri", "Dharmapuri", "Tirunelveli"], "bus_name": "Fort Cape Express"},
+    {"from": "Madurai", "to": "Thanjavur", "stops": ["Trichy", "Kumbakonam"], "bus_name": "Temple Delta Express"},
+    {"from": "Trichy", "to": "Rameswaram", "stops": ["Pudukkottai", "Ramanathapuram"], "bus_name": "Chola Coastal Deluxe"},
+    {"from": "Chennai", "to": "Thanjavur", "stops": ["Kanchipuram", "Trichy", "Kumbakonam"], "bus_name": "Temple Express"},
+    {"from": "Coimbatore", "to": "Kodaikanal", "stops": ["Palani", "Batlagundu"], "bus_name": "Hill Queen Deluxe"},
+    {"from": "Salem", "to": "Rameswaram", "stops": ["Dharmapuri", "Ramanathapuram"], "bus_name": "Coastal Hills Express"},
+    {"from": "Thoothukudi", "to": "Kodaikanal", "stops": ["Tirunelveli", "Madurai", "Dindigul"], "bus_name": "Pearl Hills Express"},
+    {"from": "Tirunelveli", "to": "Rameswaram", "stops": ["Madurai", "Ramanathapuram"], "bus_name": "Southern Coastal Express"},
+    {"from": "Chennai", "to": "Rameswaram", "stops": ["Trichy", "Madurai", "Ramanathapuram"], "bus_name": "Coastal Express"},
+    {"from": "Coimbatore", "to": "Kanyakumari", "stops": ["Madurai", "Tirunelveli", "Nagercoil"], "bus_name": "Southern Cape Deluxe"},
+    {"from": "Salem", "to": "Thanjavur", "stops": ["Namakkal", "Trichy", "Kumbakonam"], "bus_name": "Temple Hills Deluxe"},
+    {"from": "Thoothukudi", "to": "Thanjavur", "stops": ["Tirunelveli", "Madurai", "Trichy"], "bus_name": "Pearl Temple Express"},
+    {"from": "Tirunelveli", "to": "Kodaikanal", "stops": ["Madurai", "Dindigul", "Batlagundu"], "bus_name": "Southern Hills Deluxe"},
+    {"from": "Chennai", "to": "Thoothukudi", "stops": ["Trichy", "Madurai", "Tirunelveli"], "bus_name": "Pearl Express Deluxe"},
+    {"from": "Coimbatore", "to": "Thanjavur", "stops": ["Tiruppur", "Karur", "Kumbakonam"], "bus_name": "Chola Temple Express"},
+    {"from": "Salem", "to": "Thoothukudi", "stops": ["Dharmapuri", "Tirunelveli"], "bus_name": "Pearl Hills Deluxe"},
+    {"from": "Thanjavur", "to": "Kodaikanal", "stops": ["Trichy", "Dindigul", "Batlagundu"], "bus_name": "Temple Hills Rider"},
+    {"from": "Vellore", "to": "Thoothukudi", "stops": ["Krishnagiri", "Tirunelveli"], "bus_name": "Fort Pearl Express"},
+    {"from": "Madurai", "to": "Kanyakumari", "stops": ["Tirunelveli", "Nagercoil"], "bus_name": "Southern Cape Rider"},
+    {"from": "Trichy", "to": "Kodaikanal", "stops": ["Dindigul", "Batlagundu"], "bus_name": "Chola Hills Express"},
+    {"from": "Chennai", "to": "Kanyakumari", "stops": ["Trichy", "Madurai", "Tirunelveli"], "bus_name": "Cape Express Deluxe"},
+    {"from": "Coimbatore", "to": "Thoothukudi", "stops": ["Madurai", "Tirunelveli"], "bus_name": "Pearl Queen Express"},
+    {"from": "Salem", "to": "Kodaikanal", "stops": ["Dharmapuri", "Dindigul"], "bus_name": "Hill Cruiser Deluxe"},
+    {"from": "Thanjavur", "to": "Thoothukudi", "stops": ["Trichy", "Tirunelveli"], "bus_name": "Temple Pearl Express"},
+    {"from": "Vellore", "to": "Kodaikanal", "stops": ["Krishnagiri", "Dindigul"], "bus_name": "Fort Hills Rider"},
+    {"from": "Madurai", "to": "Rameswaram", "stops": ["Ramanathapuram"], "bus_name": "Coastal Rider Deluxe"},
+    {"from": "Trichy", "to": "Thoothukudi", "stops": ["Madurai", "Tirunelveli"], "bus_name": "Chola Pearl Express"},
+    {"from": "Chennai", "to": "Kodaikanal", "stops": ["Salem", "Dindigul"], "bus_name": "Hill Explorer Deluxe"},
+    {"from": "Coimbatore", "to": "Rameswaram", "stops": ["Madurai", "Ramanathapuram"], "bus_name": "Coastal Queen Deluxe"}
+        ];
+
+        const busContainer = document.getElementById("busData");
+        
+        busData.forEach(bus => {
+            const busBox = document.createElement("div");
+            busBox.classList.add("bus-box");
+            busBox.innerHTML = `
+                <div class="bus-name">${bus.bus_name}</div>
+                <div class="route">From: ${bus.from} → To: ${bus.to}</div>
+                <div class="route">Stops: ${bus.stops.join(", ")}</div>
+            `;
+            busContainer.appendChild(busBox);
+        });
+    </script>
+</body>
+</html>
