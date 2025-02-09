@@ -1,0 +1,68 @@
+/* Navigation Container */
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: #007BFF;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* Navigation links (Home, Contact) */
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+/* Profile and Logout/Login Alignment */
+.nav-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Profile section */
+.profile {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    margin-left: 20px;
+}
+
+.profile-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Button Styling */
+.log-button {
+    padding: 10px 15px;
+    background-color: yellow;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.log-button:hover {
+    background-color: black;
+}
