@@ -172,6 +172,17 @@ def emp():
 def businfo():
     return render_template('bus_info.html')
 
+@app.route('/track')
+def track():
+    bus_name = request.args.get('bus')
+    print('bus name :', bus_name)
+    source = request.args.get('source')
+    stop1 = request.args.get('stop1')
+    stop2 = request.args.get('stop2')
+    stop3 = request.args.get('stop3')
+    destination = request.args.get('destination')
+    return render_template('track.html', bus_name=bus_name, source=source, stop1=stop1, stop2=stop2, stop3=stop3, destination=destination)
+
 
 
 if __name__ == '__main__':

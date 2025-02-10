@@ -51,12 +51,22 @@
         .bus-name {
             font-size: 18px;
             font-weight: bold;
-            color: #333;
+            color: #000000;
         }
         .route {
             margin-top: 5px;
             font-size: 14px;
             color: #555;
+        }
+
+        .track-btn {
+            padding: 8px 15px;
+            font-size: 16px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
         }
         
     </style>
@@ -162,9 +172,15 @@
                 <div class="bus-name">${bus.bus_name}</div>
                 <div class="route">From: ${bus.from} → To: ${bus.to}</div>
                 <div class="route">Stops: ${bus.stops.join(", ")}</div>
+                <button class="track-btn"onclick="trackBus('${bus.bus_name}', '${bus.from}', '${bus.stops[0]}', '${bus.stops[1]}', '${bus.stops[2]}', '${bus.to}')">LIVE TRACK</button>
             `;
             busContainer.appendChild(busBox);
         });
+        function trackBus(name, source, stop1, stop2, stop3, destination) {
+            console.log("called")
+            let url = `/track?bus=${name}&source=${source}&stop1=${stop1}&stop2=${stop2}&stop3=${stop3}&destination=${destination}`;
+            window.location.href = url;
+        }
     </script>
     
 </body>

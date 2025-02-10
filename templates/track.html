@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRANSPORT</title>
+    <link rel="stylesheet" href="static/sidemenu.css">
+    <script src="static/script.js" defer></script>
+    
+    <header>
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </header>
+
+    <!-- Side Navigation Slider -->
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-content">
+            <img src="static/img/profile.png" alt="Logo" class="menu-logo">
+            <hr>
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/businfo">All Buses</a>
+            <a href="/emp">Attendance</a>
+            <a href="/contact">Contact</a>
+            <a href="/about">About</a>
+        </div>
+    </div>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            position: absolute;
+            width: 80%;
+            margin: auto;
+            height: 150px;
+            background: lightgray;
+            border-radius: 10px;
+            overflow: hidden;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+        .bus {
+            margin-top: 30px;
+            position: absolute;
+            width: 50px;
+            transition: left 100s linear; /* Smooth movement */
+        }
+        .stop {
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+            margin-left: 15px;
+        }
+        .routes {
+            margin-top: 70px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        /* Move h1 slightly downward */
+        h1 {
+            margin-top: 200px; /* Adjust the value as needed */
+            font-size: 40px;
+        }
+        /* Color the bus_name */
+        .bus-name {
+            color: red; /* Change to any color you want */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Live Tracking for <span class="bus-name">{{ bus_name }}</span></h1>
+
+    <div class="container">
+        <img src="static/img/bus2.png" class="bus" id="bus">
+        <div class="routes">
+            <div class="route">
+                <div>{{ source }}</div>
+                <div class="stop"></div>
+            </div>
+            <div class="route">
+                <div>{{ stop1 }}</div>
+                <div class="stop"></div>
+            </div>
+            <div class="route">
+                <div>{{ stop2 }}</div>
+                <div class="stop"></div>
+            </div>
+            <div class="route">
+                <div>{{ stop3 }}</div>
+                <div class="stop"></div>
+            </div>
+            <div class="route">
+                <div>{{ destination }}</div>
+                <div class="stop"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let bus = document.getElementById("bus");
+        let stops = [5,10,15, 20,25,30,35,40,45,50,55,60,65,70,75,80,85,90]; // Stop positions in percentage
+
+        // Pick a random starting point but ensure forward movement
+        let randomIndex = Math.floor(Math.random() * (stops.length - 2)); 
+        let startPosition = stops[randomIndex];
+
+        // Set initial position
+        bus.style.left = startPosition + "%";
+
+        function moveBus(index) {
+            if (index < stops.length) {
+                setTimeout(() => {
+                    bus.style.left = stops[index] + "%"; // Move forward
+                    moveBus(index + 1);
+                }, 1500); // Adjust for speed (lower = faster)
+            }
+        }
+
+        // Start moving forward
+        moveBus(randomIndex + 1);
+    </script>
+
+</body>
+</html>
