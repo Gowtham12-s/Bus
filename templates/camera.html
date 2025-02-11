@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>TRANSPORT</title>
         <link rel="stylesheet" href="static/sidemenu.css">
+        <link rel="icon" type="image/png" href="static/img/favicon.png">
         
     <script src="static/script.js" defer></script>
     </head>
@@ -24,6 +25,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.stop) {
+                        alert("you are verrifeid!");
                         window.location.href = "{{ url_for('hi') }}";  // Redirect when face detected
                     } else {
                         setTimeout(checkRedirect, 1000);  // Check again every second
@@ -54,7 +56,7 @@
             background-image: inherit;
             background-size: cover;
             background-position: center;
-            filter: blur(8px);
+            filter: blur(10px);
             z-index: -1;
         }
 
@@ -65,7 +67,7 @@
 
             img {
                 border: 5px solid #333;
-                border-radius: 10px;
+                border-radius: 100px;
                 margin-top: 20px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             }

@@ -8,7 +8,7 @@
 
     top: 15px;
     left: 20px;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 /* Side Menu (Hidden by Default) */
@@ -22,6 +22,7 @@
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    z-index: 1000;
 }
 
 /* Side Menu Content */

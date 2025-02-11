@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="static/styles.css">
         <link rel="stylesheet" href="static/sidemenu.css">
         <link rel="stylesheet" href="static/nav.css">
+        <link rel="icon" type="image/png" href="static/img/favicon.png">
     </head>
     <body>
         <header>
@@ -37,7 +38,7 @@
         <div id="sideMenu" class="side-menu">
             <div class="menu-content">
                 <!-- Logo at the top -->
-                <img src="static/img/profile.png" alt="Logo" class="menu-logo">
+                <img src="static/img/favicon.png" alt="Logo" class="menu-logo">
                 <hr> <!-- Line Separator -->
 
                 <!-- Navigation Links -->
@@ -45,14 +46,19 @@
                 <a href="/profile">Profile</a>
                 <a href="/businfo">All Buses</a>
                 <a href="/emp">Attendance</a>
-                <a href="/contact">Contact</a>
-                <a href="/about">about</a>
+                <!--<a href="#">Contact</a>-->
+                <a href="#">about</a>
             </div>
         </div>
 
 
         <div class="road">
-            <h1>WELCOME</h1>
+            <h1>WELCOME TO</h1>
+            <style>h1 {
+                text-align: center;
+                margin-left: -650px;
+            }
+            </style>
             <div class="road">
                 <img src="static/img/bus1.png" alt="Bus" class="bus">
             </div>
@@ -70,7 +76,7 @@
             }
         }
 
-        const textArray = ["CHIDAMBARAM", "VILLUPURAM", "PONDICHERRY", "SETHIYATHOPE","TINDIVANAM"];
+        const textArray = ["CHENNAI","VILLUPURAM", "PUDUCHERRY", "CHIDAMBARAM", "TINDIVANAM","VADALUR","SETHIATHOPPU"];
         let index = 0;
         let charIndex = 0;
         const textElement = document.getElementById("animated-text");
