@@ -1,6 +1,4 @@
 import os
-import base64
-import csv
 import numpy as np
 import face_recognition
 import cv2
